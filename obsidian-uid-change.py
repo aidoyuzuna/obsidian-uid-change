@@ -3,7 +3,7 @@ import os
 # フォルダ指定
 file_path = 'i:\\Knowledge_BackUP\\20221230_Obsidian\\01_Zettelkasten'
 file_list = os.listdir(file_path)
-md_data = '','',''
+md_data = ['','','']
 
 # ファイル名取得
 for i in range(len(file_list)):
@@ -11,7 +11,7 @@ for i in range(len(file_list)):
     with open(file_path + '\\'+ file_name + '.md') as f:
         for j in range(2):
             md_data[j] = f.read()
-            md_data[j] = md_data.rstrip('\n')
+            md_data[j] = md_data[j].rstrip('\n')
 # UID取得
         uid = md_data[1].replace('uid: ', '')
 # ファイル名とUIDの検索
