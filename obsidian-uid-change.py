@@ -9,10 +9,10 @@ for file in file_list:
     file_name = os.path.splitext(os.path.basename(file))[0]
     with open(dir_path + "\\" + file_name + ".md", encoding="utf-8") as f:
         md_data = f.readlines()
-    # UID・日付取得
-    uid = md_data[1].replace("uid: ", "")
-    uid = uid.replace("\n", "")
+    # UID取得
+    uid = md_data[1].replace("uid: ", "").replace("\n", "")
     print(repr(uid), repr(file_name), file_name == uid)
+
     # ファイル名とUIDの検索
     if file_name == uid:
         continue
@@ -21,6 +21,6 @@ for file in file_list:
     md_data[1] = uid_white
     md_data[2] = "create: 2023/01/01 12:00:00\n"
     # 書き込み
-    with open(dir_path + "\\" + file_name + ".md", mode="w") as w:
+    with open(dir_path + "\\" + file_name + ".md", encoding="utf-8", mode="w") as w:
         w.writelines(md_data)
         print(md_data)
