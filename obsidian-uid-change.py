@@ -1,4 +1,5 @@
 import os
+import datetime
 
 # フォルダ指定
 dir_path = "i:\\Knowledge_BackUP\\20221230_Obsidian\\01_Zettelkasten"
@@ -12,6 +13,11 @@ for file in file_list:
     # UID取得
     uid = md_data[1].replace("uid: ", "").replace("\n", "")
     print(repr(uid), repr(file_name), file_name == uid)
+
+    # 日付取得
+    date_data = md_data[2].replace("create: ", "").replace("\n", "")
+    date_format = "%y%m%d%H%M%S"
+    date = datetime.datetime.strptime(file_name, date_format)
 
     # ファイル名とUIDの検索
     if file_name == uid:
