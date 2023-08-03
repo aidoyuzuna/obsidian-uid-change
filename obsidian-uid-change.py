@@ -6,9 +6,11 @@ dir_path = "i:\\Knowledge_BackUP\\20221230_Obsidian\\01_Zettelkasten"
 file_list = os.listdir(dir_path)
 
 # ファイル名取得
-for file in file_list:
-    file_name = os.path.splitext(os.path.basename(file))[0]
-    with open(f"{dir_path}\\{file_name }.md", encoding="utf-8") as f:
+for file_full_path in file_list:
+    file_name = os.path.splitext(file_full_path)[0]
+    print(file_list)
+    print(file_name)
+    with open(f"{dir_path}\\{file_full_path}", encoding="utf-8") as f:
         md_data = f.readlines()
     # UID取得
     uid = md_data[1].replace("uid: ", "").replace("\n", "")
