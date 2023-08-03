@@ -11,10 +11,12 @@ for file in file_list:
         md_data = f.readlines()
     # UID・日付取得
     uid = md_data[1].replace("uid: ", "")
+    uid = uid.replace("\n", "")
+    print(repr(uid), repr(file_name), file_name == uid)
     # ファイル名とUIDの検索
     if file_name == uid:
         continue
-    print(uid)
+    print(file_name)
     uid_white = "uid: " + file_name + "\n"
     md_data[1] = uid_white
     md_data[2] = "create: 2023/01/01 12:00:00\n"
