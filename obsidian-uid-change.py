@@ -7,15 +7,16 @@ file_list = os.listdir(file_path)
 # ファイル名取得
 for i in range(len(file_list)):
     file_name = os.path.splitext(os.path.basename(os.path.basename(file_list[i])))[0]
-    with open(file_path + '\\' + file_name + '.md', encoding='utf-8') as f:
+    with open(file_path + '\\' + file_name + '.md') as f:
         md_data = f.readlines()
-# UID取得
+# UID・日付取得
         uid = md_data[1].replace('uid: ', '')
 # ファイル名とUIDの検索
         if not file_name == uid:
             print(uid)
             uid_white = 'uid: ' + file_name + '\n'
             md_data[1] = uid_white
+            md_data[2] = 'create: 2023/01/01 12:00:00\n'
 # 書き込み
             with open(file_path + '\\'+ file_name + '.md', mode="w") as w:
                 w.writelines(md_data)
