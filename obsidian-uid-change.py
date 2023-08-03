@@ -1,13 +1,13 @@
 import os
 
 # フォルダ指定
-file_path = 'i:\\Knowledge_BackUP\\20221230_Obsidian\\01_Zettelkasten'
-file_list = os.listdir(file_path)
+dir_path = 'i:\\Knowledge_BackUP\\20221230_Obsidian\\01_Zettelkasten'
+file_list = os.listdir(dir_path)
 
 # ファイル名取得
-for i in range(len(file_list)):
-    file_name = os.path.splitext(os.path.basename(os.path.basename(file_list[i])))[0]
-    with open(file_path + '\\' + file_name + '.md') as f:
+for file in file_list:
+    file_name = os.path.splitext(os.path.basename(file))[0]
+    with open(dir_path + '\\' + file_name + '.md') as f:
         md_data = f.readlines()
 # UID・日付取得
         uid = md_data[1].replace('uid: ', '')
@@ -18,6 +18,6 @@ for i in range(len(file_list)):
             md_data[1] = uid_white
             md_data[2] = 'create: 2023/01/01 12:00:00\n'
 # 書き込み
-            with open(file_path + '\\'+ file_name + '.md', mode="w") as w:
+            with open(dir_path + '\\'+ file_name + '.md', mode="w") as w:
                 w.writelines(md_data)
                 print(md_data)
