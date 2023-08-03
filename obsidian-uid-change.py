@@ -2,15 +2,15 @@ import os
 import datetime
 
 # フォルダ指定
-dir_path = "i:\\Knowledge_BackUP\\20221230_Obsidian\\01_Zettelkasten"
-file_list = os.listdir(dir_path)
+root_dir = "i:\\Knowledge_BackUP\\20221230_Obsidian\\01_Zettelkasten"
 
 # ファイル名取得
-for file_full_path in file_list:
-    file_name = os.path.splitext(file_full_path)[0]
-    print(file_list)
-    print(file_name)
-    with open(f"{dir_path}\\{file_full_path}", encoding="utf-8") as f:
+for file_base in os.listdir(root_dir):
+    file_name, ext = os.path.splitext(file_base)
+    if ext != ".md":
+        continue
+    full_path = os.path.join(root_dir, file_base)
+    with open(full_path, encoding="utf-8") as f:
         md_data = f.readlines()
     # UID取得
     uid = md_data[1].replace("uid: ", "").replace("\n", "")
@@ -29,6 +29,6 @@ for file_full_path in file_list:
     md_data[1] = uid_white
     md_data[2] = f"create: {date:%Y/%m/%d %H:%M:%S}\n"
     # 書き込み
-    with open(f"{dir_path}\\{file_name}.md", encoding="utf-8", mode="w") as w:
+    with open(full_path, encoding="utf-8", mode="w") as w:
         w.writelines(md_data)
         print(md_data)
