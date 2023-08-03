@@ -25,7 +25,8 @@ for file in file_list:
     print(file_name)
     uid_white = "uid: " + file_name + "\n"
     md_data[1] = uid_white
-    md_data[2] = "create: 2023/01/01 12:00:00\n"
+    date = date.strftime("%y/%m/%d %H:%M:%S")
+    md_data[2] = "create: 20" + date + "\n"
     # 書き込み
     with open(dir_path + "\\" + file_name + ".md", encoding="utf-8", mode="w") as w:
         w.writelines(md_data)
