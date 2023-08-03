@@ -8,7 +8,7 @@ file_list = os.listdir(dir_path)
 # ファイル名取得
 for file in file_list:
     file_name = os.path.splitext(os.path.basename(file))[0]
-    with open(dir_path + "\\" + file_name + ".md", encoding="utf-8") as f:
+    with open(f"{dir_path}\\{file_name }.md", encoding="utf-8") as f:
         md_data = f.readlines()
     # UID取得
     uid = md_data[1].replace("uid: ", "").replace("\n", "")
@@ -23,11 +23,10 @@ for file in file_list:
     if file_name == uid:
         continue
     print(file_name)
-    uid_white = "uid: " + file_name + "\n"
+    uid_white = f"uid: {file_name}\n"
     md_data[1] = uid_white
-    date = date.strftime("%y/%m/%d %H:%M:%S")
-    md_data[2] = "create: 20" + date + "\n"
+    md_data[2] = f"create: {date:%Y/%m/%d %H:%M:%S}\n"
     # 書き込み
-    with open(dir_path + "\\" + file_name + ".md", encoding="utf-8", mode="w") as w:
+    with open(f"{dir_path}\\{file_name}.md", encoding="utf-8", mode="w") as w:
         w.writelines(md_data)
         print(md_data)
