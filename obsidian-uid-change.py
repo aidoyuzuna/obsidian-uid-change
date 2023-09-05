@@ -2,7 +2,7 @@ import os
 import datetime
 
 # フォルダ指定
-root_dir = "i:\\Knowledge_BackUP\\20221230_Obsidian\\01_Zettelkasten"
+root_dir = f"{os.environ['GoogleDrive']}\\Obsidian\\01_Inbox"
 
 # ファイル名取得
 for file_base in os.listdir(root_dir):
